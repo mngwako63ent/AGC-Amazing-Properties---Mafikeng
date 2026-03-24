@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #FFB162;
+  --color-brand-deep-navy: #1B2632;
+  --color-brand-blue-gray: #2C3B4D;
+  --color-brand-cream: #EEE9DF;
+  --color-brand-terracotta: #A35139;
+  --color-brand-oatmeal: #C9C1B1;
+  --breakpoint-xs: 480px;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+  }
+
+  .dark {
+    --background: 210 30% 15%;
+    --foreground: 38 25% 91%;
+  }
+}
+
+body {
+  @apply bg-brand-deep-navy text-brand-cream antialiased selection:bg-brand-orange/30;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.glass-card {
+  @apply bg-brand-blue-gray/40 backdrop-blur-lg border border-white/5 rounded-2xl;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-brand-cream to-brand-cream/50;
+}
