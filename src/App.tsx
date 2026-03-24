@@ -57,6 +57,25 @@ const services = [
   },
 ];
 
+const ParallaxSection = ({ image, children }: { image: string, children: React.ReactNode }) => {
+  return (
+    <section className="relative h-[60vh] sm:h-[80vh] w-full overflow-hidden flex items-center justify-center group">
+      <motion.div 
+        initial={{ scale: 1.1, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 z-0 bg-fixed bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+        style={{ backgroundImage: `url('${image}')` }}
+      />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-deep-navy/80 via-brand-deep-navy/40 to-brand-deep-navy/80 backdrop-blur-[1px]" />
+      <div className="relative z-20 max-w-4xl mx-auto px-4 text-center">
+        {children}
+      </div>
+    </section>
+  );
+};
+
 const HomePage = () => {
   const [selectedProperty, setSelectedProperty] = React.useState<Property | null>(null);
   const featuredProperties = allProperties.slice(0, 3);
@@ -213,6 +232,30 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Creative Background Section */}
+      <ParallaxSection image="https://res.cloudinary.com/dm7sxhaeb/image/upload/v1774352813/2148182997_ze0lxv.jpg">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="space-y-6"
+        >
+          <h2 className="text-brand-orange font-medium uppercase tracking-widest text-xs sm:text-sm">Our Vision</h2>
+          <h3 className="text-4xl sm:text-6xl md:text-7xl font-bold text-brand-cream leading-tight">
+            Building Legacies, <br /> One Home at a Time.
+          </h3>
+          <p className="text-brand-cream/80 text-lg sm:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+            We believe that every property has a story, and every client has a dream. Our mission is to bridge that gap with excellence and integrity.
+          </p>
+          <div className="pt-8">
+            <Link to="/properties" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-orange text-brand-deep-navy font-bold rounded-full hover:bg-brand-cream transition-colors group">
+              Start Your Journey <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </motion.div>
+      </ParallaxSection>
+
       {/* About Section / CTA */}
       <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-brand-orange/5 -skew-y-6 transform origin-top-left" />
@@ -277,7 +320,17 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-brand-deep-navy">
+      <div className="min-h-screen bg-brand-deep-navy relative overflow-hidden">
+        {/* Subtle Global Background Texture */}
+        <div 
+          className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: `url('https://res.cloudinary.com/dm7sxhaeb/image/upload/v1774352813/2148182997_ze0lxv.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}
+        />
         <FloatingNav navItems={navItems} />
 
         <Routes>
