@@ -117,8 +117,8 @@ const HomePage = () => {
                 />
               </motion.div>
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-brand-cream leading-[1.1] md:leading-tight">
-                I don't <span className="text-brand-orange italic">BUY</span> and sit on properties,<br className="hidden sm:block" />
-                I <span className="text-brand-orange italic">SELL</span> Them.
+                We don't <span className="text-brand-orange italic">BUY</span> and sit on properties,<br className="hidden sm:block" />
+                We <span className="text-brand-orange italic">SELL</span> Them.
               </h1>
             </motion.div>
             
